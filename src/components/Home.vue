@@ -10,6 +10,7 @@ const charactersFiltered = ref([]);
 const searchCharacterName = ref("");
 const selectedOption = ref("");
 const scrollComponent = ref(null);
+const showButton = ref(false);
 let page = 1;
 const showModal = ref(false);
 
@@ -30,9 +31,11 @@ const loadMoreCharacters = async () => {
 onMounted(() => {
   fetchCharacters();
   window.addEventListener("scroll", handleScroll);
+  window.addEventListener("scroll", handleScrollToTop);
 });
 onUnmounted(() => {
   window.removeEventListener("scroll", handleScroll);
+  window.removeEventListener("scroll", handleScrollToTop);
 });
 const handleScroll = (e) => {
   let element = scrollComponent.value;
@@ -40,6 +43,9 @@ const handleScroll = (e) => {
     loadMoreCharacters();
   }
 };
+const handleScrollToTop = () => {
+  showButton.value = window.scrollY > 500; 
+}
 
 const searchCharacter = async () => {
   showModal.value = true;
@@ -57,28 +63,33 @@ const closeModal = () => {
   searchCharacterName.value = "";
 };
 
-const handleChangeValue = async() => {
-
-  if(selectedOption.value === 'cleanFilter') { 
+const handleChangeValue = async () => {
+  if (selectedOption.value === "cleanFilter") {
     fetchCharacters(1);
     charactersFiltered.value = [];
-  }else {
-
-    const [key, value] = selectedOption.value.split('-');
+  } else {
+    const [key, value] = selectedOption.value.split("-");
     try {
       const { data } = await clientAxios(`?${key}=${value}`);
-  
+
       charactersFiltered.value = data.results;
     } catch (error) {
       console.log(err);
     }
   }
+};
 
-}
+const scrollToTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth", // Smooth scroll to top
+  });
+};
 </script>
 
 <template>
   <div class="container animate__fadeIn animate__animated">
+    <button class="return-top" @click="scrollToTop" v-if="showButton">&#8593;</button>
     <div class="d-flex w-100 justify-content-center align-items-center p-2">
       <div class="d-flex justify-content-between flex-column">
         <div class="form-group">
@@ -137,4 +148,21 @@ const handleChangeValue = async() => {
   />
 </template>
 
-<style scoped></style>
+<style scoped>
+.return-top {
+  position: fixed;
+  bottom: 4rem;
+  right: 3rem;
+  z-index: 99;
+  outline: none;
+  border: 0.1rem solid rgba(0, 153, 94, 0.986);
+  padding: 0.4rem;
+  border-radius: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+</style>
