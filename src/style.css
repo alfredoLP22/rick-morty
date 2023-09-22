@@ -1,0 +1,45 @@
+*::after, *::before,* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  overflow-x: hidden;
+}
+
+.p > * {
+  color: rgba(0, 153, 94, 0.986);
+}
+.detail-color {
+  color: rgba(0, 153, 94, 0.986);
+}
+.detail-color-link {
+    color: rgba(0, 153, 94, 0.986);
+    text-decoration: none;
+    transition: all 0.2s ease-in;
+}
+.btn-outline:hover {
+  border: .1rem solid rgba(0, 153, 94, 0.986) !important;
+  color: rgba(0, 153, 94, 0.986) !important;
+  background-color: rgba(0, 153, 94, 0.267) !important;
+}
+
+.text-detail {
+  font-weight: bold;
+}
+.detail-color-link:hover {
+    margin: .5rem;
+    text-decoration: underline;
+    color: black;
+}
+.detail-color-alt {
+  color: rgba(153, 0, 0, 0.986);
+}
+.badge-detail {
+  padding: 0.15rem 1rem;
+  border-radius: 0.4rem;
+  border: 0.1rem solid rgba(0, 153, 94, 0.658);
+  background-color: rgba(0, 153, 94, 0.267);
+  text-align: center;
+  color: rgba(0, 153, 94, 0.986);
+}
