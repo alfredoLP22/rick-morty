@@ -1,4 +1,5 @@
 <script setup>
+import { translateText } from "../helpers/translateText";
 defineProps({
   showModal: {
     type: Object,
@@ -19,7 +20,8 @@ defineEmits(["closeModal"]);
         <img src="/icons8-close.svg" alt="" />
       </button>
       <h3 class="d-flex justify-content-center mt-5">
-        Numero de resultados: <span class="detail-color pl-3">{{ charactersFounded.length }}</span>
+        Numero de resultados:
+        <span class="detail-color pl-3">{{ charactersFounded.length }}</span>
       </h3>
       <div class="card-group">
         <div
@@ -34,10 +36,16 @@ defineEmits(["closeModal"]);
               Nombre: <span class="detail-color">{{ character.name }}</span>
             </p>
             <p class="text-detail">
-              Especie: <span class="detail-color">{{ character.species }}</span>
+              Especie:
+              <span class="detail-color">{{
+                translateText(character.species, "specie")
+              }}</span>
             </p>
             <p class="text-detail">
-              Género: <span class="detail-color">{{ character.gender }}</span>
+              Género:
+              <span class="detail-color">{{
+                translateText(character.gender, "gender")
+              }}</span>
             </p>
             <router-link
               :to="{ name: 'detail', params: { id: character.id } }"
@@ -101,7 +109,7 @@ img {
   border-radius: 0.3rem;
 }
 .pl-3 {
-  padding-left: .5rem;
+  padding-left: 0.5rem;
 }
 
 button {

@@ -1,4 +1,5 @@
 <script setup>
+import { translateText } from "../helpers/translateText";
 import LazyLoadImages from "./LazyLoadImages.vue";
 
 defineProps({
@@ -19,8 +20,8 @@ defineProps({
         <p class="text-detail">
           Nombre: <span class="detail-color">{{ character.name }}</span>
         </p>
-        <p class="text-detail">Especie: <span class="detail-color">{{ character.species }}</span></p>
-        <p class="text-detail">Género: <span class="detail-color">{{ character.gender }}</span></p>
+        <p class="text-detail">Especie: <span class="detail-color">{{ translateText(character.species, 'specie') }}</span></p>
+        <p class="text-detail">Género: <span class="detail-color">{{ translateText(character.gender, 'gender') }}</span></p>
         <router-link
           :to="{ name: 'detail', params: { id: character.id } }"
           class="btn btn-outline-dark mt-3 btn-outline w-100"
