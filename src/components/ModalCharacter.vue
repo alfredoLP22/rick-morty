@@ -19,39 +19,44 @@ defineEmits(["closeModal"]);
       <button @click="$emit('closeModal')" class="close-icon mb-3 btn">
         <img src="/icons8-close.svg" alt="" />
       </button>
-      <h3 class="d-flex justify-content-center mt-5">
-        Numero de resultados:
-        <span class="detail-color pl-3">{{ charactersFounded.length }}</span>
-      </h3>
-      <div class="card-group">
-        <div
-          class="d-flex flex-column align-items-start mt-5 p-4 col-lg-6 col-md-12 col-sm-6"
-          v-for="character in charactersFounded"
-        >
-          <figure>
-            <img :src="character.image" alt="" />
-          </figure>
-          <div class="d-flex flex-column p-3">
-            <p class="text-detail">
-              Nombre: <span class="detail-color">{{ character.name }}</span>
-            </p>
-            <p class="text-detail">
-              Especie:
-              <span class="detail-color">{{
-                translateText(character.species, "specie")
-              }}</span>
-            </p>
-            <p class="text-detail">
-              Género:
-              <span class="detail-color">{{
-                translateText(character.gender, "gender")
-              }}</span>
-            </p>
-            <router-link
-              :to="{ name: 'detail', params: { id: character.id } }"
-              class="btn btn-outline-dark mt-3 btn-outline"
-              >Ver más</router-link
-            >
+      <div v-if="charactersFounded.length === 0" class="d-flex justify-content-center mt-5 h3">
+        No se encontraron resultados
+      </div>
+      <div v-else>
+        <h3 class="d-flex justify-content-center mt-5">
+          Numero de resultados:
+          <span class="detail-color pl-3">{{ charactersFounded.length }}</span>
+        </h3>
+        <div class="card-group">
+          <div
+            class="d-flex flex-column align-items-start mt-5 p-4 col-lg-6 col-md-12 col-sm-6"
+            v-for="character in charactersFounded"
+          >
+            <figure>
+              <img :src="character.image" alt="" />
+            </figure>
+            <div class="d-flex flex-column p-3">
+              <p class="text-detail">
+                Nombre: <span class="detail-color">{{ character.name }}</span>
+              </p>
+              <p class="text-detail">
+                Especie:
+                <span class="detail-color">{{
+                  translateText(character.species, "specie")
+                }}</span>
+              </p>
+              <p class="text-detail">
+                Género:
+                <span class="detail-color">{{
+                  translateText(character.gender, "gender")
+                }}</span>
+              </p>
+              <router-link
+                :to="{ name: 'detail', params: { id: character.id } }"
+                class="btn btn-outline-dark mt-3 btn-outline"
+                >Ver más</router-link
+              >
+            </div>
           </div>
         </div>
       </div>
