@@ -12,6 +12,7 @@ html {
 }
 .detail-color {
   color: rgba(0, 153, 94, 0.986);
+  font-weight: normal;
 }
 .detail-color-link {
     color: rgba(0, 153, 94, 0.986);

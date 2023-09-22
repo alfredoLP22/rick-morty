@@ -41,7 +41,7 @@ defineEmits(["closeModal"]);
             </p>
             <router-link
               :to="{ name: 'detail', params: { id: character.id } }"
-              class="btn btn-outline-dark mt-3 btn-outline w-100"
+              class="btn btn-outline-dark mt-3 btn-outline"
               >Ver más</router-link
             >
           </div>
