@@ -16,7 +16,7 @@ defineEmits(["closeModal"]);
   <div v-if="showModal" class="modal">
     <div class="modal-content h-75">
       <button @click="$emit('closeModal')" class="close-icon mb-3 btn">
-        <img src="icons8-close.svg" alt="" />
+        <img src="/icons8-close.svg" alt="" />
       </button>
       <h3 class="d-flex justify-content-center mt-5">
         Numero de resultados: <span class="detail-color pl-3">{{ charactersFounded.length }}</span>
